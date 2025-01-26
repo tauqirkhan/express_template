@@ -15,6 +15,6 @@ app.use((err, req, res, next) => {
   res.status(err.statusCode || 500).send(err.message);
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "::", () => {
   console.log(`App is live at - http://localhost:${PORT}/`);
 });
