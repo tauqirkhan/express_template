@@ -1,16 +1,6 @@
-const { Client } = require("pg");
-require("dotenv").config();
+const populateTables = require("./populate/populateTables");
+const createMockTable = require("./create/createMockTable");
 
-const SQL = "your_SQL_query_here";
-
-async function main() {
-  console.log("seeding");
-  const client = new Client({
-    connectionString: `postgresql://${process.env.PGUSER}:${process.env.PGPASSWORD}@${process.env.PGHOST}:${process.env.PGPORT}/${process.env.PGDATABASE}`,
-  });
-  await client.connect();
-  await client.query(SQL);
-  await client.end();
-}
-
-main();
+//tables as an array must return { createTableSQL, insertSQL },
+//where insertSQL is optional
+populateTables([createMockTable]);
